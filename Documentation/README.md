@@ -59,7 +59,7 @@ if (string.IsNullOrEmpty(userId))
 * Page View and Conversion Page
 * Participation Percentage
 
-![Screenshot1](images/Screenshot1.png?raw=true "Screenshot1")
+![image](https://user-images.githubusercontent.com/16465622/200675607-20a4b789-b155-4031-bf0a-6c1cd8bbc47e.png)
 
 
 ## Startup Class Changes Required in Content Cloud 
@@ -72,5 +72,5 @@ services.Configure<FullStackSettings>(_configuration.GetSection("full-stack"));
 ## Experimentation Results
 Experimentation Results is shown in CMS AB Test view as below
 
-![Screenshot2](images/Screenshot2.png?raw=true "Screenshot2")
+![image](https://user-images.githubusercontent.com/16465622/200675858-c4748306-90f1-4aed-87cf-9315b711a6fd.png)
 
