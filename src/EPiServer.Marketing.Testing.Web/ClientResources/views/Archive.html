@@ -1,0 +1,151 @@
+﻿<div data-dojo-type="dijit/layout/BorderContainer" id="epi-ab-archive-bordercontainer" class="sleek epi-form-container epi-grid-form dijitContainer">
+    <!-- button bar -->
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top', splitter:false" class="epi-localToolbar" role="toolbar">
+        <div class="epi-toolbarGroupContainer" id="archiveToolbarGroup">
+            <!-- Empty Leading Toolbar Group -->
+            <div class="epi-toolbarGroup epi-toolbarLeading"></div>
+            <!-- Empty Center Toolbar Group -->
+            <div class="epi-toolbarGroup epi-toolbarCenter"></div>
+            <!-- Options and Cancel Buttons -->
+            <div class="epi-toolbarGroup epi-toolbarTrailing">
+                <!--Close Button-->
+                <button class="epi-button--bold" data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick: _onCloseClick">${resources.archiveview.button_close}</button>
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center', splitter:false" class="epi-abtest-body-container">
+        <div class="epi-abtest-body" id="archiveAbTestBody">
+            <!-- Header Test Title and Running Time / Status -->
+            <div class="cardWrapper">
+                <div class="cardBody">
+                    <h1 class="objectIcon" data-dojo-attach-point="title"></h1>
+                    <h2>
+                        <span data-dojo-attach-point="testStatus"></span>
+                    </h2>
+                </div>
+
+            </div>
+            <!-- Control/Published Version -->
+            <div data-dojo-attach-point="controlWrapper" class="cardWrapper 2column">
+                <div class="leadingContent" data-dojo-attach-point="controlStatusIcon"></div>
+                <h3 data-dojo-attach-point="controlHeader">
+                    ${resources.archiveview.content_control_header}
+                </h3>
+                <div class="cardBody cardBody-bottom">
+                    <div>
+                        <div class="epi-spinnerOverlay" id="publishThumbnailarchive-spinner">
+                            <div class="lds-rolling epi-abtest-thumbnail">
+                                <div></div>
+                            </div>
+                        </div>
+                        <div id="publishThumbnailarchive-error" class="epi-abtest-hidden">
+                            <div class="epi-abtest-thumbnail-container">
+                                <div class="objectIcon"></div>
+                            </div>
+                        </div>
+                        <canvas title="${resources.archiveview.view_control_content}" id="publishThumbnailarchive" class="epi-abtest-thumbnail epi-abtest-hidden epi-abtest-pointer" data-dojo-attach-event="onclick: _onControlViewClick" />
+                    </div>
+                    <p class="contentInfo">
+                        <span class="publishedIcon epi-abtest-narrow-top">
+                            ${resources.archiveview.published_prefix}
+                        </span>
+                        <span class="epi-username" data-dojo-attach-point="publishedBy"></span>,
+                        <span data-dojo-attach-point="datePublished"></span>
+                    </p>
+                    <div class="abTestResult">
+                        <h2 data-dojo-attach-point="controlVersionTestResult"></h2>
+                    </div>
+                    <hr class="epi-abtest-hr" />
+                    <!-- Multi KPI Conv % -->
+                    <div data-dojo-attach-point="controlConversionPercent"></div>
+                    <!-- Control Statistics -->
+                    <div class="epi-abTest-summaryToggle">
+                        <a class="epi-visibleLink" data-dojo-attach-point="summaryToggle" data-dojo-attach-event="onclick: _toggleSummaries">${resources.archiveview.hide_summary}</a>
+                    </div>
+                    <div data-dojo-attach-point="controlArchiveSummaryNode"></div>
+                </div>
+            </div>
+            <!-- Challenger/Draft Version-->
+            <div data-dojo-attach-point="challengerWrapper" class="cardWrapper 2column">
+                <div class="winningContent" data-dojo-attach-point="challengerStatusIcon"></div>
+                <h3 data-dojo-attach-point="challengerHeader">
+                    ${resources.archiveview.content_challenger_header}
+                </h3>
+                <div class="cardBody cardBody-bottom">
+                    <div>
+                        <div class="epi-spinnerOverlay" id="draftThumbnailarchive-spinner">
+                            <div class="lds-rolling epi-abtest-thumbnail">
+                                <div></div>
+                            </div>
+                        </div>
+                        <div id="draftThumbnailarchive-error" class="epi-abtest-hidden">
+                            <div class="epi-abtest-thumbnail">
+                                <div class="objectIcon"></div>
+                            </div>
+                        </div>
+                        <canvas title="${resources.archiveview.view_challenger_content}" id="draftThumbnailarchive" class="epi-abtest-thumbnail epi-abtest-hidden epi-pointer" data-dojo-attach-event="onclick: _onChallengerViewClick" />
+                    </div>
+                    <p class="contentInfo">
+                        <span class="draftIcon epi-abtest-narrow-top">${resources.archiveview.draft_prefix}</span>
+                        <span class="epi-username epi-abtest-middle" data-dojo-attach-point="changedBy"></span>,
+                        <span class="epi-abtest-middle" data-dojo-attach-point="dateChanged"></span>
+                    </p>
+                    <div class="abTestResult">
+                        <h2 data-dojo-attach-point="challengerVersionTestResult"></h2>
+                    </div>
+                    <hr class="epi-abtest-hr" />
+                    <!-- Multi KPI Conv % -->
+                    <div data-dojo-attach-point="challengerConversionPercent"></div>
+                    <!-- Challenger Statistics-->
+                    <div class="epi-abTest-summaryToggle"></div>
+                    <div data-dojo-attach-point="challengerArchiveSummaryNode"></div>
+                </div>
+            </div>
+            <!-- Test Information -->
+            <div class="cardWrapper epi-abtest-clear">
+                <div class="cardBody">
+                    <div class="formsRow">
+                        <h4>${resources.archiveview.description_heading}</h4>
+                        <p class="epi-abtest-fontLarge" data-dojo-attach-point="testDescription"></p>
+                    </div>
+                    <div class="formsRow">
+                        <h4>
+                            ${resources.archiveview.conversion_header}
+                        </h4>
+                        <div id="archive_conversionMarkup">
+                            <!-- KPI Generated Markup -->
+                        </div>
+                    </div>
+                    <hr class="epi-abtest-hr">
+                    <div class="formsRow">
+                        <h4>${resources.archiveview.percent_participation_header}</h4>
+                        <p>
+                            <strong><span data-dojo-attach-point="participationPercentage"></span>% </strong>${resources.archiveview.test_percent_to_participations_divider}<strong><span data-dojo-attach-point="totalParticipants"></span></strong>
+                        </p>
+                    </div>
+                    <hr class="epi-abtest-hr">
+                    <div class="formsRow">
+                        <h4>${resources.archiveview.test_duration_header}</h4>
+                        <p>
+                            <strong><span data-dojo-attach-point="testDuration"></span></strong> ${resources.archiveview.days_divider}
+                            ${resources.archiveview.from}
+                            <span data-dojo-attach-point="testStartDate"> </span>
+                            ${resources.archiveview.to}
+                            <span data-dojo-attach-point="testEndDate"> </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="cardWrapper">
+                <h3 class="epi-abtest-advanced-header">${resources.archiveview.advanced_options_header}</h3>
+                <div class="cardBody epi-abtest-moderate-top">
+                    <h4>${resources.archiveview.advanced_options_confidence_level}</h4>
+                    <p>
+                        <strong><span data-dojo-attach-point="confidence"></span></strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

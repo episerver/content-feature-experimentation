@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <Import Project="..\..\build\version.props" />
+  <Import Project="..\..\build\nuspec.props" />
+  <Import Project="..\..\build\DependencyVersions.props" />
+  <PropertyGroup>
+    <Product>EPiServer.Marketing.Testing.Web</Product>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <NuspecFile>EPiServer.Marketing.Testing.Web.nuspec</NuspecFile>
+    <NuspecProperties>Configuration=$(Configuration);version=$(MtVersion);mtNextMajorVersion=$(MtNextMajorVersion);uiVersion=$(UiVersion);uiNextMajorVersion=$(UiNextMajorVersion);cmsVersion=$(CmsVersion);cmsNextMajorVersion=$(CmsNextMajorVersion)</NuspecProperties>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedLangFiles\**\*" />
+    <EmbeddedResource Include="EmbeddedScriptFiles\**\*" />
+    <Compile Remove="Repositories\MarketingTestingFSRepository.cs" />
+    <EmbeddedResource Include="SchemaUpdater\Testing.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.AspNetCore" Version="$(CmsCoreVersionCommon)" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="$(CmsCoreVersionCommon)" />
+    <PackageReference Include="EPiServer.CMS.UI" Version="$(CmsUiVersionCommon)" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="$(CmsUiVersionCommon)" />
+    <PackageReference Include="EPiServer.Framework" Version="$(CmsCoreVersionCommon)" />
+    <PackageReference Include="EPiServer.Framework.AspNetCore" Version="$(CmsCoreVersionCommon)" />
+    <PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EPiServer.Marketing.KPI\EPiServer.Marketing.KPI.csproj" />
+    <ProjectReference Include="..\EPiServer.Marketing.Testing.Core\EPiServer.Marketing.Testing.Core.csproj" />
+    <ProjectReference Include="..\EPiServer.Marketing.Testing.Dal\EPiServer.Marketing.Testing.Dal.csproj" />
+  </ItemGroup>
+
+</Project>

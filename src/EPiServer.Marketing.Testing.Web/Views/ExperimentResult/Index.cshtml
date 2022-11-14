@@ -1,0 +1,119 @@
+﻿@using EPiServer.Marketing.Testing.Dal.DataAccess.FullSttack.Core.Impl.Models
+@model OptiExperimentResults
+
+
+@{
+if (Model.Reach != null)
+ {
+<link rel="stylesheet" href="https://content.optimizely-demo.rocks/styles/ab/ab-report.css" />
+   
+<div class="container">
+<div class="SectionHeader">
+  <div class="strong"><h2>Experiment Results</h2></div>
+  <div class="" style="float: right;"><span class="strong">Date:</span> @(Model.StartTime.ToString("MMM dd, yyyy")) <br /><span class="strong">Segment:</span> @(Model.Metrics[0].Aggregator + " " + Model.Metrics[0].Scope)<br /><span class="strong">Total Visitors:</span> @(Model.Reach.TotalCount)</div>
+</div>
+<!-- LEGEND START-->
+<div class="legendDetails">
+  <ul>
+    <li class="legend-on"><strong>On</strong> = Draft Version</li>
+    <li class="legend-off"><strong>Off</strong> = Published Version</li>
+  </ul>
+</div>
+<!-- LEGEND END-->
+<div class="SectionSummary">
+  <div class="strong"><h3>Summary</h3></div>
+  <div class="">
+    <div class="divTable">
+      <div class="divTableBody">
+          <div class="divTableRow">
+              <div class="divTableCell strong">Variations</div>
+              <div class="divTableCell strong">Visitors</div>
+              <div class="divTableCell strong">Page View</div>
+          </div>
+          <!--
+              Just for record
+              Off points to current Published version
+              On points to Draft version
+
+              Results.First() has Off value currently
+          -->
+          
+        @{ //sometimes only one records is there in results, show both records if both records exists
+        //sometimes ON comes in First and Sometimes On Comes in Last
+
+
+            <div class="divTableRow">
+                <div class="divTableCell">@Model.Metrics[0].Results.Last().Value.Name</div>
+                <div class="divTableCell"><span>@Model.Reach.Variations.Last().Value.Count</span><br /><span class="fontGrey">@(Math.Round(Math.Abs(Model.Reach.Variations.Last().Value.VariationReach * 100),2) + "%")</span></div>
+                <div class="divTableCell"><span>@(Model.Metrics[0].Results.Last().Value.Lift != null ? Math.Round(Math.Abs (Model.Metrics[0].Results.Last().Value.Lift.Value * 100),2) + "%" : "--")</span><br /><span class="fontGrey">@(Math.Round(Math.Abs(Model.Metrics[0].Results.Last().Value.Rate * 100),2))%</span></div>
+            </div>
+        if (@Model.Metrics[0].Results.Count > 1)
+        { 
+            <div class="divTableRow">
+                <div class="divTableCell">@Model.Metrics[0].Results.First().Value.Name</div>
+                <div class="divTableCell"><span>@Model.Reach.Variations.First().Value.Count</span><br /><span class="fontGrey">@(Math.Round(Math.Abs (Model.Reach.Variations.First().Value.VariationReach * 100),2) + "%")</span></div>
+                <div class="divTableCell"><span>@(Model.Metrics[0].Results.First().Value.Lift != null ? Math.Round(Math.Abs (Model.Metrics[0].Results.First().Value.Lift.Value * 100),2) + "%" : "--")</span><br /><span class="fontGrey">@(Math.Round(Math.Abs(Model.Metrics[0].Results.First().Value.Rate * 100),2))%</span></div>
+            </div>
+        }
+    }
+      </div>
+      </div>
+  </div>
+</div>
+<div><br /></div>
+<div class="SectionPageMetrics">
+  <div><span class="strong">Primary Metrics - </span><span>@Model.Metrics[0].Name</span></div>
+  <div class="fontGrey">Unique conversions per visitor for <b>@Model.Metrics[0].Name</b> event</div>
+</div>
+<div><br /></div>
+<div class="SectionMetricsTable">
+  <div class="divTable">
+    <div class="divTableBody">
+    <div class="divTableRow">
+        <div class="divTableCell"></div>
+        <div class="divTableCell strong">Unique Conversions Visitors</div>
+        <div class="divTableCell strong">Conversion Rate</div>
+        <div class="divTableCell strong">Improvement</div>
+        <div class="divTableCell strong">Confidence Interval</div>
+        <div class="divTableCell strong">Statistical Significance</div>
+    </div>
+    
+@{
+    //sometimes only one records is there in results, show both records if both records exists
+    
+
+    
+            <div class="divTableRow">
+                <div class="divTableCell">@Model.Metrics[0].Results.Last().Value.Name</div>
+                <div class="divTableCell"><span>@Model.Metrics[0].Results.Last().Value.Value</span><br /><span class="fontGrey">@Model.Metrics[0].Results.Last().Value.Samples</span></div>
+                <div class="divTableCell"><span>@(Math.Round(Math.Abs( Model.Metrics[0].Results.Last().Value.Rate * 100 ),2))%</span></div>
+                <div class="divTableCell"><span>@(Model.Metrics[0].Results.Last().Value.Lift != null ? Math.Round(Math.Abs( Model.Metrics[0].Results.Last().Value.Lift.Value * 100),2) + "%"  : "--")</span></div>
+                <div class="divTableCell"><span>--</span></div>
+                <div class="divTableCell"><span>@(Model.Metrics[0].Results.Last().Value.Lift != null ? Model.Metrics[0].Results.Last().Value.Lift.Significance : "--")</span><br /><span class="fontGrey">@(Model.Metrics[0].Results.Last().Value.IsBaseline ? "Baseline" : "--")</span></div>
+            </div>
+        if (@Model.Metrics[0].Results.Count > 1)
+        {
+         
+            <div class="divTableRow">
+                <div class="divTableCell">@Model.Metrics[0].Results.First().Value.Name</div>
+                <div class="divTableCell"><span>@Model.Metrics[0].Results.First().Value.Value</span><br /><span class="fontGrey">@Model.Metrics[0].Results.First().Value.Samples</span></div>
+                <div class="divTableCell"><span>@(Math.Round(Math.Abs(Model.Metrics[0].Results.First().Value.Rate * 100),2))%</span></div>
+                <div class="divTableCell"><span>@(Model.Metrics[0].Results.First().Value.Lift != null ? Math.Round(Math.Abs( Model.Metrics[0].Results.First().Value.Lift.Value * 100),2) + "%" : "--")</span></div>
+                <div class="divTableCell"><span>--</span></div>
+                <div class="divTableCell"><span>@(Model.Metrics[0].Results.First().Value.Lift != null ? Model.Metrics[0].Results.First().Value.Lift.Significance : "--")</span><br /><span class="fontGrey">@(Model.Metrics[0].Results.First().Value.Lift?.VisitorsRemaining > 100000 ? "> 100,000 visitors remaining" : Model.Metrics[0].Results.First().Value.Lift?.VisitorsRemaining)</span></div>
+            </div>
+        }
+
+
+}
+    </div>
+    </div>
+</div>
+</div>
+
+
+
+
+   
+}
+}

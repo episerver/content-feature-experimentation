@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<languages>
+  <language name="Italiano" id="it">
+    <commercekpi>
+      <addtocart>
+        <config_markup>
+          <conversion_label>Il visitatore aggiunge il prodotto al carrello</conversion_label>
+          <error_conversionproduct>È necessario selezionare un prodotto prima di poter salvare la A / B test.</error_conversionproduct>
+          <error_not_published_product>È necessario selezionare un prodotto pubblicato o variazione del prodotto prima di poter salvare la A / B test.</error_not_published_product>
+        </config_markup>
+        <description>Scegli un prodotto per la conversione. Risultati: visualizzazioni in base ai visitatori che hanno visto il prodotto, mentre le conversioni indicano quando un visitatore aggiunge il prodotto indicato nel carrello.</description>
+        <name>Aggiungi al carrello</name>
+        <readonly_markup>
+          <conversion_header>Aggiungi il prodotto al carrello</conversion_header>
+          <conversion_selector_description>Il visitatore aggiunge il prodotto al carrello</conversion_selector_description>
+        </readonly_markup>
+      </addtocart>
+      <admin>
+        <cancel>Annulla</cancel>
+        <description>Queste impostazioni sono predefinite e vengono utilizzate come obiettivi di conversione commerciali quando sono aggiunti a un test.</description>
+        <displayname>Configurazione obiettivi di conversione commerciale</displayname>
+        <financialculturepreference>Seleziona quali impostazioni cultura utilizzare quando salvi e visualizzi i risultati finanziari</financialculturepreference>
+        <save>Salva</save>
+      </admin>
+      <averageorder>
+        <config_markup>
+          <conversion_label>Traccia gli ordini evasi e calcola la media dei totali degli ordini evasi durante il test.</conversion_label>
+          <error_defaultmarketundefined>Non è stato impostato un mercato preferito, né è stato definito un mercato predefinito.</error_defaultmarketundefined>
+          <error_undefinedmarket>L'attuale mercato preferito non è stato definito correttamente o è stato rimosso.</error_undefinedmarket>
+        </config_markup>
+        <description>Schermate: numero di visitatori che hanno visualizzato l'elemento sottoposto a test.  Conversioni: il totale rappresenta il carrello medio totale acquistato sulla base di tutti i visitatori che hanno fatto il check out durante il test.</description>
+        <name>Ordine medio</name>
+        <readonly_markup>
+          <conversion_description>Traccia gli ordini evasi e calcola la media dei totali degli ordini evasi durante il test.</conversion_description>
+          <conversion_header>Obiettivo di conversione</conversion_header>
+        </readonly_markup>
+      </averageorder>
+      <purchaseitem>
+        <config_markup>
+          <conversion_label>Visitatore acquista prodotto</conversion_label>
+          <error_conversionproduct>È necessario selezionare un prodotto prima di poter salvare la A / B test.</error_conversionproduct>
+          <error_not_published_product>È necessario selezionare un prodotto pubblicato o variazione del prodotto prima di poter salvare la A / B test.</error_not_published_product>
+        </config_markup>
+        <description>Scegli un prodotto per la conversione. Risultati: visualizzazioni in rapporto ai visitatori che hanno visto il prodotto, mentre le conversioni indicano quando un visitatore aggiunge il prodotto indicato nel carrello.</description>
+        <name>Acquisto prodotto</name>
+        <readonly_markup>
+          <conversion_header>Obiettivo di conversione</conversion_header>
+          <conversion_selector_description>Visitatore acquista il prodotto</conversion_selector_description>
+        </readonly_markup>
+      </purchaseitem>
+    </commercekpi>
+  </language>
+</languages>

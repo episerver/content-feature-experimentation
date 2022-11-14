@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\MSBuild\CommonImports.targets" Condition="'$(CommonImports_targets)' == ''" />
+  <PropertyGroup>
+    <WebPublishMethod>MSDeploy</WebPublishMethod>
+    <LaunchSiteAfterPublish>False</LaunchSiteAfterPublish>
+	<AllowUntrustedCertificate>true</AllowUntrustedCertificate>
+    <SiteUrlToLaunchAfterPublish />
+    <ExcludeApp_Data>False</ExcludeApp_Data>
+    <MSDeployServiceURL>dailyqs.ep.se</MSDeployServiceURL>
+    <DeployIisAppPath>SiteName</DeployIisAppPath>
+    <RemoteSitePhysicalPath />
+    <SkipExtraFilesOnServer>True</SkipExtraFilesOnServer>
+    <MSDeployPublishMethod>WMSVC</MSDeployPublishMethod>
+    <EnableMSDeployBackup>True</EnableMSDeployBackup>
+    <UserName>BranchLister</UserName>    
+  </PropertyGroup>
+	<ItemGroup>
+		<!-- CopyToPublishDirectory = { Always, PreserveNewest, Never } -->
+		<!-- Copying a file located outside of the project into the published folder. -->
+		<ResolvedFileToPublish Include="..\..\MSBuild\DtkBuild\ZipOutput\EPiServer.Commerce.Shell.zip">
+			<RelativePath>modules\_protected\EPiServer.Commerce.Shell\%(Filename)%(Extension)</RelativePath>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</ResolvedFileToPublish>
+		<ResolvedFileToPublish Include="..\..\MSBuild\DtkBuild\ZipOutput\Commerce.zip">
+			<RelativePath>modules\_protected\Commerce\%(Filename)%(Extension)</RelativePath>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</ResolvedFileToPublish>
+		<ResolvedFileToPublish Include="..\..\MSBuild\DtkBuild\ZipOutput\EPiServer.Commerce.UI.CustomerService.zip">
+			<RelativePath>modules\_protected\EPiServer.Commerce.UI.CustomerService\%(Filename)%(Extension)</RelativePath>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</ResolvedFileToPublish>
+		<ResolvedFileToPublish Include="..\..\MSBuild\DtkBuild\ZipOutput\EPiServer.Commerce.UI.Admin.zip">
+			<RelativePath>modules\_protected\EPiServer.Commerce.UI.Admin\%(Filename)%(Extension)</RelativePath>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</ResolvedFileToPublish>
+	</ItemGroup>
+  
+</Project>

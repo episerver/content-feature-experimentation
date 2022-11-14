@@ -1,0 +1,177 @@
+﻿<div data-dojo-type="dijit/layout/BorderContainer" id="epi-ab-detail-bordercontainer" class="sleek epi-form-container epi-grid-form dijitContainer">
+    <!-- button bar -->
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top', splitter:false" class="epi-localToolbar" role="toolbar">
+        <div class="epi-toolbarGroupContainer" id="detailsToolbarGroup">
+            <!-- Empty Leading Toolbar Group -->
+            <div class="epi-toolbarGroup epi-toolbarLeading"></div>
+            <!-- Empty Center Toolbar Group -->
+            <div class="epi-toolbarGroup epi-toolbarCenter"></div>
+            <!-- Options and Cancel Buttons -->
+            <div class="epi-toolbarGroup epi-toolbarTrailing">
+                <!-- Options Button-->
+                <div id="optionsDropdown" class="dijit dijitReset dijitInline epi-mediumButton epi-button--bold dijitDropDownButton" data-dojo-type="dijit/form/DropDownButton">
+                    <span>${resources.detailsview.button_options}</span>
+                    <div class="dijitReset epi-tooltipDialogMenu epi-menuInverted" data-dojo-type="dijit/DropDownMenu" role="menu">
+                        <div id="pickWinnerMenuItem" class="dijitReset dijitMenuItem" data-dojo-type="dijit/MenuItem" data-dojo-props="iconClass:'epi-iconTrophy'" data-dojo-attach-event="onClick: _onPickWinnerOptionClicked">${resources.detailsview.button_pick_winner_option}</div>
+                        <div class="dijitReset dijitMenuItem" data-dojo-type="dijit/MenuItem" data-dojo-attach-event="onClick: _onAbortOptionClicked">${resources.detailsview.button_abort_option}</div>
+                    </div>
+                </div>
+                <!--Close Button-->
+                <button class="epi-button--bold" data-dojo-type="dijit/form/Button" data-dojo-props="iconClass:'epi-iconClose'" data-dojo-attach-event="onClick: _onCancelClick">${resources.detailsview.button_close}</button>
+                &nbsp;
+            </div>
+        </div>
+        <div class="epi-notificationBar" data-dojo-attach-point="detailsNotificationBar" style="display:none">
+            <div>
+                <div class="epi-notificationBarItem">
+                    <div class="epi-notificationBarText">
+                        <p>
+                            <div data-dojo-attach-point="testGloballyDisabled"></div>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center', splitter:false" class="epi-abtest-body-container">
+        <div class="epi-abtest-body" id="detailsAbTestBody">
+            <!-- Header Test Title and Running Time / Status -->
+            <div class="cardWrapper">
+                <div class="cardBody">
+                    <h1 class="objectIcon" data-dojo-attach-point="title"></h1>
+                    <h2>
+                        <span data-dojo-attach-point="testStatus" style="display:none;"></span>
+                        <span class="epi-abtest-status" data-dojo-attach-point="testStarted"></span>
+                    </h2>
+
+                </div>
+            </div>
+            <!-- Control/Published Version -->
+            <div class="row">
+                <div data-dojo-attach-point="controlWrapper" class="cardWrapper 2column epi-abtest-preview-left-side">
+                    <div class="leadingContent" data-dojo-attach-point="controlStatusIcon"></div>
+                    <h3>
+                        ${resources.detailsview.content_control_header}
+                    </h3>
+                    <div class="cardBody epi-abtest-narrow-btm">
+                        <div>
+                            <div class="epi-spinnerOverlay" id="publishThumbnaildetail-spinner">
+                                <div class="lds-rolling epi-abtest-thumbnail">
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div id="publishThumbnaildetail-error" class="epi-abtest-thumbnail-hidden">
+                                <div class="epi-abtest-thumbnail">
+                                    <div class="objectIcon">
+                                    </div>
+                                </div>
+                            </div>
+                            <canvas title="${resources.detailsview.view_control_content}" id="publishThumbnaildetail" class="epi-abtest-thumbnail epi-abtest-thumbnail-hidden epi-abtest-pointer" data-dojo-attach-event="onclick: _onControlViewClick" />
+                        </div>
+                        <p class="contentInfo">
+                            <span class="publishedIcon">
+                                ${resources.detailsview.published_prefix}
+                            </span>
+                            <span class="epi-username" data-dojo-attach-point="publishedBy"></span>,
+                            <span data-dojo-attach-point="datePublished"></span>
+                            <br />
+                        </p>
+                        <!-- Multi KPI Conv % -->
+                        <div data-dojo-attach-point="controlConversionPercent"></div>
+                        <!-- Control Statistics -->
+                        <div class="epi-abTest-summaryToggle">
+                            <a class="epi-visibleLink" data-dojo-attach-point="summaryToggle" data-dojo-attach-event="onclick: _toggleSummaries">${resources.detailsview.hide_summary}</a>
+                        </div>
+                        <div data-dojo-attach-point="controlDetailsSummaryNode"></div>
+                    </div>
+                </div>
+                <!-- Challenger/Draft Version-->
+                <div data-dojo-attach-point="challengerWrapper" class="cardWrapper 2column epi-abtest-preview-right-side">
+                    <div class="winningContent" data-dojo-attach-point="challengerStatusIcon"></div>
+                    <h3>
+                        ${resources.detailsview.content_challenger_header}
+                    </h3>
+                    <div class="cardBody epi-abtest-narrow-btm">
+                        <div>
+                            <div class="epi-spinnerOverlay" id="draftThumbnaildetail-spinner">
+                                <div class="lds-rolling epi-abtest-thumbnail">
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div id="draftThumbnaildetail-error" class="epi-abtest-thumbnail-hidden">
+                                <div class="epi-abtest-thumbnail">
+                                    <div class="objectIcon"></div>
+                                </div>
+                            </div>
+                            <canvas title="${resources.detailsview.view_challenger_content}" id="draftThumbnaildetail" class="epi-abtest-thumbnail epi-abtest-thumbnail-hidden epi-abtest-pointer" data-dojo-attach-event="onclick: _onChallengerViewClick" />
+                        </div>
+                        <p class="contentInfo">
+                            <span class="draftIcon">${resources.detailsview.draft_prefix}</span>
+                            <span class="epi-username" data-dojo-attach-point="changedBy"></span>,
+                            <span class="epi-abtest-middle" data-dojo-attach-point="dateChanged"></span>
+                        </p>
+                        <!-- Multi KPI Conv % -->
+                        <div data-dojo-attach-point="challengerConversionPercent"></div>
+                        <!-- Challenger Statistics-->
+                        <div class="epi-abTest-summaryToggle"></div>
+                        <div data-dojo-attach-point="challengerDetailsSummaryNode"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Test Information -->
+            <div class="cardWrapper epi-abtest-clear">
+                <div class="cardBody">
+                    <div class="formsRow">
+                        <h4>${resources.detailsview.description_heading}</h4>
+                        <p class="epi-abtest-fontLarge" data-dojo-attach-point="testDescription"></p>
+                    </div>
+                    <div class="formsRow">
+                        <h4>
+                            ${resources.detailsview.conversion_header}
+                        </h4>
+                        <div id="details_conversionMarkup">
+                            <!-- KPI Generated Markup -->
+                        </div>
+                    </div>
+                    <hr class="epi-abtest-hr">
+                    <div class="formsRow">
+                        <h4>${resources.detailsview.percent_participation_header}</h4>
+                        <p>
+                            <strong><span data-dojo-attach-point="participationPercentage"></span>% </strong>
+                            ${resources.detailsview.test_percent_to_participations_divider}<strong style="display:none;"><span data-dojo-attach-point="totalParticipants" style="display:none;"></span></strong>
+                        </p>
+                    </div>
+                    <hr class="epi-abtest-hr">
+                    <!--${resources.detailsview.test_duration_header}
+                    <div class="formsRow">
+        <h4>${resources.detailsview.test_duration_header}</h4>
+        <p>
+            <strong><span data-dojo-attach-point="testDuration"></span></strong> ${resources.detailsview.days_divider} <strong><span data-dojo-attach-point="testRemaining"> </span></strong>&nbsp;<span data-dojo-attach-point="testRemainingText"></span>
+        </p>
+        <div data-dojo-type="dijit/ProgressBar"
+             data-dojo-id="durationProgressBarDetails"
+             class="epi-abtest-progress"></div>
+    </div>-->
+                </div>
+            </div>
+            <!-- Test Information -->
+            <div class="cardWrapper epi-abtest-clear">
+                <div class="cardBody">
+                    <div class="formsRow">
+                        <iframe src="" data-dojo-attach-point="myiframe" width="100%" style="width: 100%; border: 0; min-height: 600px;" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+                        <!--<div class="cardWrapper epi-abtest-bottom-fill">
+                    <h3 class="epi-abtest-advanced-header">${resources.detailsview.advanced_options_header}</h3>
+                    <div class="cardBody">
+                        <h4>${resources.detailsview.advanced_options_confidence_level}</h4>
+                        <p>
+                            <strong><span data-dojo-attach-point="confidence"></span></strong>
+                        </p>
+                    </div>
+                </div>-->
+                    </div>
+                </div>
+            </div>

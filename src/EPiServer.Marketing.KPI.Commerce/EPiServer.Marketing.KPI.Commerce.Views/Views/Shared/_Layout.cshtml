@@ -1,0 +1,38 @@
+﻿@using EPiServer.Framework.Web.Resources
+@using EPiServer.Shell.Navigation
+@inject EPiServer.Framework.Localization.ICurrentCultureAccessor cultureAccessor
+@inject IOptions<Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> antiforgeryOptions
+
+<!DOCTYPE html>
+
+<html lang="@cultureAccessor.CurrentCulture.Name">
+<head>
+    <title>Optimizely Marketing AB Testing</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/EPiServer/EPiServer.Cms.UI.Admin/clientResources/favicon.ico" rel="icon" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow:300,400,500" />
+
+    @ClientResources.RenderResources("kpicommerce", new[] { ClientResourceType.Style })
+
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="epi-workspace">
+    @Html.AntiForgeryToken()
+    @Html.Raw(Html.CreatePlatformNavigationMenu())
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" @Html.Raw(Html.ApplyPlatformNavigation()) style="z-index:auto;"
+         data-module-shell-path="@EPiServer.Shell.Paths.ToResource("EPiServer.Marketing.KPI.Commerce", "")"
+         data-epi-antiforgery-header-name="@antiforgeryOptions.Value.HeaderName"
+         data-epi-antiforgery-form-field-name="@antiforgeryOptions.Value.FormFieldName">
+        @RenderBody()
+    </div>
+    @ClientResources.RenderResources("kpicommerce", new[] { ClientResourceType.Script })
+    @RenderSection("AdditionalScripts", false)
+</body>
+</html>

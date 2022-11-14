@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <Import Project="..\..\build\version.props" />
+  <Import Project="..\..\build\nuspec.props" />
+  <Import Project="..\..\build\DependencyVersions.props" />
+  <PropertyGroup>
+    <Product>EPiServer.Marketing.KPI.Commerce</Product>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>    
+    <NuspecFile>EPiServer.Marketing.KPI.Commerce.nuspec</NuspecFile>
+    <IsPackable>true</IsPackable>
+    <PackageOutputPath>$(SolutionDir)artifacts\packages\</PackageOutputPath>
+	<NuspecProperties>Configuration=$(Configuration);version=$(MtVersion);mtNextMajorVersion=$(MtNextMajorVersion);commerceVersion=$(CommerceVersion);commerceNextMajorVersion=$(CommerceNextMajorVersion)</NuspecProperties>
+	<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="clientResources\scss\main.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.Commerce.Core" Version="$(CmsCommerceVersionCommon)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EPiServer.Marketing.KPI\EPiServer.Marketing.KPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Markup\**\*"  />
+    <EmbeddedResource Include="EmbeddedLangFiles\**\*"  />
+  </ItemGroup>
+  
+</Project>

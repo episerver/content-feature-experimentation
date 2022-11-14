@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <CmsCoreVersionCommon>12.4.0</CmsCoreVersionCommon>
+	  <CmsUiVersionCommon>12.4.0</CmsUiVersionCommon>
+    <CmsCommerceVersionCommon>14.3.0</CmsCommerceVersionCommon>
+</PropertyGroup>
+</Project>

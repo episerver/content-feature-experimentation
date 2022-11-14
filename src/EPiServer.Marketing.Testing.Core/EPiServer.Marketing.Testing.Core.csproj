@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Manager\TestManagerFS.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EPiServer.Marketing.KPI\EPiServer.Marketing.KPI.csproj" />
+    <ProjectReference Include="..\EPIServer.Marketing.Messaging\EPIServer.Marketing.Messaging.csproj" />
+    <ProjectReference Include="..\EPiServer.Marketing.Testing.Dal\EPiServer.Marketing.Testing.Dal.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Runtime.Caching" />
+  </ItemGroup>
+
+</Project>

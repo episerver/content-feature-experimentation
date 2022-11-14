@@ -1,0 +1,6 @@
+# Comment the following line when upgrading Alloy project:
+EPiServer.Templates.Alloy/*
+Quicksilver/packages
+Quicksilver/EPiServer.Reference.Commerce.Site/modules
+Quicksilver/EPiServer.Reference.Commerce.Site/App_Data/blobs
+Quicksilver/EPiServer.Reference.Commerce.Site/App_Data/Quicksilver

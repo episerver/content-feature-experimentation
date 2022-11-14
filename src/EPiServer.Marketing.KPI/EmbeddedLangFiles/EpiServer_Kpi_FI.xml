@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<languages>
+  <language name="suomi" id="fi">
+    <kpi>
+      <content_comparator_kpi>
+        <config_markup>
+          <conversion_label>Vierailija siirtyy sivulle</conversion_label>
+          <error_conversionpage>Muuntosivu on valittava ennen kuin A/B-testi voidaan tallentaa.</error_conversionpage>
+          <error_selected_notpublished>Julkaisematonta sivua ei voi valita muuntotavoitesivuksi.</error_selected_notpublished>
+          <error_selected_samepage>Testattavaa sivua ei voi valita muuntotavoitesivuksi.</error_selected_samepage>
+        </config_markup>
+        <description>Valittu sivu on sivu, jota kävijän täytyy napsauttaa, jotta sen voidaan katsoa olevan muunto.  Tulokset: Tarkastelukerrat ovat testisivulla käyneiden kävijöiden määrä. Muunnot ovat niiden kävijöiden määrä, jotka ovat napsauttaneet valitulle aloitussivulle testin ollessa käynnissä.</description>
+        <name>Siirtymissivu</name>
+        <readonly_markup>
+          <conversion_header>Muuntotavoite</conversion_header>
+          <conversion_selector_description>Vierailija siirtyy sivulle</conversion_selector_description>
+        </readonly_markup>
+      </content_comparator_kpi>
+      <kpi_messaging>
+        <failed_to_load>Lataus epäonnistui</failed_to_load>
+        <missing_client>Asiakaskomentosarjan paketoijaresurssia ei löytynyt</missing_client>
+        <uimarkup_not_defined>UIMarkupAttribute-luokan attribuuttia ei ole määritetty.</uimarkup_not_defined>
+      </kpi_messaging>
+      <stickysite_kpi>
+        <config_markup>
+          <conversion_label>Minuuttimäärä, joka kuluu ennen toisella sivulla käyntiä</conversion_label>
+          <error_internal>Sisäinen virhe: {0}</error_internal>
+          <error_invalid_timeoutvalue>Minuuttimäärän on oltava arvo väliltä 1–60.</error_invalid_timeoutvalue>
+        </config_markup>
+        <description>Muuntaa, kun kävijä tarkastelee testisivua ja käy sitten verkkosivuston jollakin muulla sivulla saman selainistunnon aikana.  Tulokset: Tarkastelukerrat ovat verkkosivulla käyneiden kävijöiden määrä.  Muunnot ovat niiden kävijöiden määrä, jotka ovat napsauttaneet verkkosivuston jollekin muulle sivulle määritetyn ajan kuluessa.</description>
+        <name>Sivustolla pysyminen</name>
+        <readonly_markup>
+          <conversion_header>Muuntotavoite</conversion_header>
+          <conversion_selector_description>Vierailija siirtyy jollekin muulle sivulle {0} minuutin kuluessa.</conversion_selector_description>
+        </readonly_markup>
+      </stickysite_kpi>
+      <timeonpage_kpi>
+        <config_markup>
+          <conversionlabel>Sekuntimäärä, jonka kävijä pysyy sivulla.</conversionlabel>
+          <emptyfield>Kenttä ei voi olla tyhjä.</emptyfield>
+          <notpositiveinteger>Arvon on oltava kokonaisluku väliltä 1-1800.</notpositiveinteger>
+        </config_markup>
+        <description>Seuraa, kuinka kauan kävijä pysyy sivulla ja muuntaa määritetyn ajan kuluttua.  Tarkastelukerrat: Testattavaa sivua katsoneiden kävijöiden määrä.  Muunnot: Niiden kävijöiden määrä, jotka ovat pysyneet sivulla määritetyn vähimmäisajan.</description>
+        <name>Aika sivulla</name>
+        <readonly_markup>
+          <conversion_header>Muuntotavoite</conversion_header>
+          <conversion_selector_description>Sekuntimäärä, jonka kävijä pysyy sivulla:</conversion_selector_description>
+        </readonly_markup>
+      </timeonpage_kpi>
+    </kpi>
+  </language>
+</languages>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- testing build 013-->
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Research.Marketing.Experimentation</id>
+    <version>0.2.1</version>
+    <title>Optimizely Marketing Experimentation Tools</title>
+    <authors>Optimizely Presales</authors>
+    <owners>Optimizely Presales</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Create A/B Tests for your EPiServer Site integrated with FullStack</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright</copyright>
+    <tags>EPiServerModulePackage EPiServerAddon EPiServer Marketing Experimentation FullStack</tags>
+    <repository type="git" url="https://github.com/javedmshaikh/content-ab-testing.git" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="EPiServer.Marketing.KPI" version="[3.1.0, 4.0.0)" />
+        <dependency id="EPiServer.Marketing.Messaging" version="[3.1.0, 4.0.0)" />
+        <dependency id="EPiServer.CMS.UI" version="[12.4.0, 13.0.0)" />
+        <dependency id="EPiServer.CMS.AspNetCore" version="[12.4.0, 13.0.0)" />
+        <dependency id="RestSharp" version="108.0.1" />
+        <dependency id="Optimizely.SDK" version="3.11.1" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/any/modules/_protected/EPiServer.Marketing.Testing/EPiServer.Marketing.Testing.zip" buildAction="None" copyToOutput="true" />
+    </contentFiles>
+  </metadata>
+</package>

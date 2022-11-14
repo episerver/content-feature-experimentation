@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\build\version.props" />
+  <Import Project="..\..\build\nuspec.props" />
+  <Import Project="..\..\build\DependencyVersions.props" />
+  <PropertyGroup>
+    <Product>EPiServer.Marketing.KPI</Product>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>    
+    <NuspecFile>EPiServer.Marketing.KPI.nuspec</NuspecFile>
+    <IsPackable>true</IsPackable>
+    <PackageOutputPath>$(SolutionDir)artifacts\packages\</PackageOutputPath>
+    <NuspecProperties>Configuration=$(Configuration);version=$(MtVersion);uiVersion=$(UiVersion);uiNextMajorVersion=$(UiNextMajorVersion);cmsVersion=$(CmsVersion);cmsNextMajorVersion=$(CmsNextMajorVersion)</NuspecProperties>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="$(CmsCoreVersionCommon)" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="$(CmsUiVersionCommon)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <EmbeddedResource Include="SchemaUpdater\**\*" />
+    <EmbeddedResource Include="Markup\**\*" />
+    <EmbeddedResource Include="EmbeddedLangFiles\**\*" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Compile Remove="Dal\DataAccess\KpiDataAccessFS.cs" />
+  </ItemGroup>
+
+</Project>

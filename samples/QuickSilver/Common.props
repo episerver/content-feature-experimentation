@@ -1,0 +1,16 @@
+<Project>
+  <Import Project="DependencyVersions.props" Condition="'$(DependencyVersions_props)' == ''" />
+  <PropertyGroup>
+    <Common_props>true</Common_props>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+ </Project>

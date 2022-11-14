@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<languages>
+  <language name="Nederlands" id="nl">
+    <kpi>
+      <stickysite_kpi>
+        <name path="/kpi/stickysite_kpi/name/">Site Stickiness</name>
+      </stickysite_kpi>
+    </kpi>
+  </language>
+</languages>

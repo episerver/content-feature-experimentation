@@ -1,0 +1,34 @@
+@using EPiServer.Framework.Web.Resources
+@using EPiServer.Shell.Navigation
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Optimizely AB Testing Configuration</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/EPiServer/EPiServer.Cms.UI.Admin/clientResources/favicon.ico" rel="icon" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow:300,400,500" />
+
+    @ClientResources.RenderResources("ABTestingConfig", new[] { ClientResourceType.Style })
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        input[type='text'] {
+            border: 0 !important;
+            background: none !important;
+        }
+    </style>
+</head>
+<body>
+    @Html.Raw(Html.CreatePlatformNavigationMenu())
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" @Html.Raw(Html.ApplyPlatformNavigation()) style="z-index:auto;" data-module-shell-path="@EPiServer.Shell.Paths.ToResource("EPiServer.Marketing.Testing", "")"></div>
+    @ClientResources.RenderResources("ABTestingConfig", new[] { ClientResourceType.Script })
+</body>
+</html>
