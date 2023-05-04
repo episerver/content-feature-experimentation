@@ -6,15 +6,14 @@
 		<NuspecProperties>Configuration=$(Configuration);Version=$(PackageVersion)</NuspecProperties>
 		<PackageOutputPath>$(SolutionDir)artifacts\packages\</PackageOutputPath>
 		<TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GenerateLicenseFiles</TargetsForTfmSpecificContentInPackage>
-		<LicenseFiles>$(SolutionDir)build\licenses\NO-THIRD-PARTY-LICENSES.txt</LicenseFiles>
 		<LicenseTemplate>$(SolutionDir)build\licenses\LICENSE.txt.template</LicenseTemplate>
 	</PropertyGroup>
 
 	<Target Name="GenerateLicenseFiles"  >
 		<ItemGroup>
-			<LicenseFiles Include="$(LicenseTemplate)" Condition="'$(LicenseTemplate)' != ''" />
-			<LicenseFiles Include="$(LicenseFiles)" Condition="'$(LicenseFiles)' != ''"/>
-			<LicenseContents Include="$([System.IO.File]::ReadAllText(%(LicenseFiles.Identity)))" Condition="'$(LicenseFiles)' != ''"/>
+			<LicenseItems Include="$(LicenseTemplate)" Condition="'$(LicenseTemplate)' != ''" />
+			<LicenseItems Include="$(LicenseFiles)" Condition="'$(LicenseFiles)' != ''"/>
+			<LicenseContents Include="$([System.IO.File]::ReadAllText(%(LicenseItems.Identity)))" Condition="'@(LicenseItems)' != ''"/>
 		</ItemGroup>
 		<WriteLinesToFile File="license.txt" Lines="@(LicenseContents->'%(Identity)%0D%0A')" Overwrite="true" />
 	</Target>
